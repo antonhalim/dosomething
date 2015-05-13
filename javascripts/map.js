@@ -17,12 +17,10 @@ function codeAddress() {
   geocoder.geocode( { 'address': address}, function(results, status) {
     if (status == google.maps.GeocoderStatus.OK) {
       // results[0].geometry.location["A"]
-      schools
-    // Display multiple schools on a map
-    var infoWindow = new google.maps.InfoWindow(), marker, i;
-
-    // Loop through our array of markers & place each one on the map
-    for( i = 0; i < schools.length; i++ ) {
+      // Display multiple schools on a map
+      var infoWindow = new google.maps.InfoWindow(), marker, i;
+      // Loop through our array of markers & place each one on the map
+      for( i = 0; i < schools.length; i++ ) {
         var position = new google.maps.LatLng(schools[i].lat, schools[i].lon);
         // latlng.extend(position);
         map.setCenter(results[0].geometry.location);
@@ -31,15 +29,24 @@ function codeAddress() {
             map: map,
             title: schools[i].name
         });
-      // debugger;
 
+      // Allow each marker to have an info window
+      google.maps.event.addListener(marker, 'click', (function(marker, i) {
+        return function() {
+          infoWindow.setContent(schools[i].name);
+          infoWindow.open(map, marker);
+        }
+      })(marker, i));
+      // Automatically center the map fitting all markers on the screen
+      // map.fitBounds(position);
+      }
       //zipcode location on marker
       // map.setCenter(results[0].geometry.location);
       // var marker = new google.maps.Marker({
       //     map: map,
       //     position: results[0].geometry.location
       // });
-    }} else {
+    } else {
       alert('Geocode was not successful for the following reason: ' + status);
     }
   });
