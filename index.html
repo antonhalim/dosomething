@@ -4,8 +4,12 @@
     <style>
      html, body, #map-canvas {
        height: 80%;
-       margin: 0px;
+       width: 100%;
+       /* margin: 0px; */
        padding: 0px
+     }
+     body{
+       text-align: center;
      }
      #panel {
        position: absolute;
@@ -29,9 +33,9 @@
     <link rel="stylesheet" href="stylesheets/pygment_trac.css">
     <script src="jquery-2.1.4.js"></script>
     <script type="text/javascript" src="javascripts/modernizr.js"></script>
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
     <script type="text/javascript" src="javascripts/headsmart.min.js"></script>
     <script type="text/javascript" src="javascripts/getSampleData.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true"></script>
     <script type="text/javascript" src="javascripts/map.js"></script>
 
@@ -39,10 +43,12 @@
   </head>
 
   <body>
-    <div id="">
+    <h1>Search Nearest School</h1>
+      <div>
+        <h4>Enter Your Zipcode: </h4>
         <input id="address" type="textbox" placeholder="10001">
         <input type="button" value="Search" onclick="codeAddress()">
-      </div>
+      </div> or Use Your <a href="current_location.html">Current Location</a>
 
       <div id="map-canvas"></div>
   </body>
